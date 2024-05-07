@@ -1,12 +1,14 @@
 import axios from "axios";
-import { useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+
+import CheckoutModal from "./CheckoutModal";
 
 const Checkout = () => {
   const nameRef = useRef(null);
   const addressRef = useRef(null);
   const phoneNumberRef = useRef(null);
-  const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +19,7 @@ const Checkout = () => {
         billing_address: addressRef.current.value,
         phone_number: phoneNumberRef.current.value,
       });
-      navigate("/products");
+      setIsModalOpen(true);
     } catch (error) {
       console.log(error);
     }
@@ -82,6 +84,7 @@ const Checkout = () => {
           </button>
         </div>
       </form>
+      {isModalOpen && <CheckoutModal />}
     </div>
   );
 };

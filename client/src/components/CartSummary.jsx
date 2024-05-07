@@ -26,7 +26,9 @@ const CartSummary = ({ summary }) => {
       </ul>
       <Link
         to="/checkout"
-        className="block text-center font-bold mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded"
+        className={`block text-center font-bold mt-6 text-md px-6 py-2.5 w-full bg-blue-600 hover:bg-blue-700 text-white rounded ${
+          total !== 0 || "pointer-events-none"
+        }`}
       >
         Check out
       </Link>
